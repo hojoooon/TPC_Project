@@ -85,17 +85,3 @@ body {
     justify-content: center;
     float: right;
 }
-
-.inner_form {
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    border-radius: 30px;
-    border: 1px solid red;
-    width: 45%;
-}
-
-.inner_form form {
-    padding: 3px 5px;
-}
-
