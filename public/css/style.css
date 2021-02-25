@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #fef4e8;
+}
+
+.topnav {
+    display: flex;
+    height: 40px;
+    left: 0;
+    right: 0;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fea71a;
+    padding: 8px 20px;
+    position: fixed;
+}
+
+.topnav h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.topnav h2 {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.topnav h3 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.topnav a {
+    text-decoration: none;
+    color: #640f00;
+}
+
+.topnav_title {
+    font-size: 18px;
+}
+
+.topnav_menu {
+    display: flex;
+    list-style: none;
+    font-size: 17px;
+}
+
+.topnav_menu li {
+    padding: 8px 12px;
+    justify-content: space-between;
+}
+
+.subnav {
+    display: flex;
+    position: fixed;
+    margin-top: 56px;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 35px;
+}
+
+.subnav a {
+    color: #fef4e8;
+    text-decoration: none;
+}
+
+.subnav_menu {
+    background-color: #640f00;
+    display: flex;
+    flex: 1;
+    padding: 6px 12px;
+    left: auto;
+    right: auto;
+    width: auto;
+    color: #fef4e8;
+    font-weight: 300;
+    justify-content: center;
+    float: right;
+}
