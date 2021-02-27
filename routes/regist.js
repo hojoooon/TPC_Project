@@ -4,7 +4,7 @@ const router = express.Router();
 
 const menus = [
     { title: 'Cookie', link: '#'},
-    { title: 'URL', link: '/regist/url'},
+    { title: 'URL', link: '#'},
     { title: 'JSON', link: '#'}
 ]
 
