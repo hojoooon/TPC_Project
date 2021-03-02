@@ -721,7 +721,7 @@ legend {
     transform: translateY(-50%);
   }
   [dir="rtl"] .choices__list--dropdown .choices__item--selectable {
-    text-align: right;
+    text-align: center;
     padding-left: 100px;
     padding-right: 10px;
   }
@@ -732,7 +732,7 @@ legend {
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
-  background-color: #f2f2f2;
+  background-color: #fef5e8;
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted:after {
@@ -759,7 +759,7 @@ legend {
 .choices__heading {
   font-weight: 600;
   font-size: 12px;
-  padding: 10px;
+  padding: 8px;
   border-bottom: 1px solid #f7f7f7;
   color: gray;
 }
@@ -922,20 +922,20 @@ legend {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  height: 10px;
+  height: 100%;
   color: #555;
 }
 
 .s003 form .inner-form .input-field.first-wrap .choices[data-type*="select-one"]:after {
-  right: 30px;
+  right: 40px;
   border-color: #e5e5e5 transparent transparent transparent;
 }
 
 .s003 form .inner-form .input-field.first-wrap .choices__list.choices__list--dropdown {
   border: 0;
   background: #fff;
-  padding: 9px 10px;
-  margin-top: 3px;
+  padding: 10px 10px;
+  margin-top: 2px;
   border-radius: 25px;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 }
@@ -987,11 +987,6 @@ legend {
   box-shadow: none;
 }
 
-@media screen and (max-width: 992px) {
-  .s003 form .inner-form .input-field {
-    height: 50px;
-  }
-}
 
 @media screen and (max-width: 767px) {
   .s003 form .inner-form {
@@ -1007,7 +1002,7 @@ legend {
     padding: 10px 15px;
   }
   .s003 form .inner-form .input-field.first-wrap {
-    width: 30px;
+    width: 100%;
     border-right: 0;
   }
   .s003 form .inner-form .input-field.first-wrap .choices__inner {
