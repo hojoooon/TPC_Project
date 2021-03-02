@@ -13,6 +13,5 @@ router.get('/', (req, res) => {
 
 // router.get('/search:id', (req, res) => {
 //     console.log(req.params, req.query);
-// })
-
+// });
 module.exports = router;

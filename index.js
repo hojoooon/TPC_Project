@@ -20,3 +20,5 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 app.listen(app.get('port'), () => {
     console.log(`Server is running at : http://127.0.0.1:${app.get('port')}`);
 });
+
+// module.exports = router;
