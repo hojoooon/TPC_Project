@@ -4,7 +4,11 @@ const router = express.Router();
 
 const options = {
     title: 'Search',
-    menus: ['Cookies', 'Publishers', 'Conn', 'Month']
+    menus: [
+        { title: 'cookies', link: '/cookies'},
+        { title: 'URL', link: '#'},
+        { title: 'JSON', link: '#'}
+    ]
 }
 
 router.get('/', (req, res) => {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+    <%- include('link') %>
+    <link href="../public/css/cookies.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('topnav')%>
+  <div class="datafield">
+    <div class="domainInform">
+      <h4 class="domainTitle"><%= JSON.stringify(data.domainTitle).replace(/\"/gi, "") %></h1>
+      <a href=<%= data.url %>>
+        <h4 class="domainUrl"><%= JSON.stringify(data.url).replace(/\"/gi, "") %></h4>
+      </a>
+    </div>
+    <div class="cookieInform">
+      <h3>Cookies</h3>
+      <div class="table-responsive">
+        <table class="table table-warning table-sm">
+          <thead>
+            <tr class="tr">
+              <th>No.</th>
+              <th>name</th>
+              <th>conn</th>
+              <th>connTLD</th>
+              <th>publisher</th>
+              <th>type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i=0; i < data.cookie.length; i++){ %>
+              <% if(data.cookie[i].id % 2 === 0){ %>
+                <tr style="background-color: #cc7351; color:#ffefdb;">
+                  <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
+                  <td class="tooltip">
+                    <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
+                    <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
+                  </td>
+                  <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
+                </tr>
+              <% } else { %>
+                <tr style="background-color:#e08f62; color:#640f00; ;">
+                  <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
+                  <td class="tooltip">
+                    <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
+                    <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
+                  </td>
+                  <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
+                  <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

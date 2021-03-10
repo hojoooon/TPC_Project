@@ -1,0 +1,101 @@
+.domainInform {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+  /* align-content: stretch; */
+  flex-wrap: nowrap;
+  /* vertical-align: bottom; */
+  padding-top: 20px;
+  padding-left: 5%;
+  /* text-align: justify; */
+}
+.domainTitle {
+  /* display: inline; */
+  vertical-align: bottom;
+  text-align: justify;
+  font-weight: 700;
+  /* width: 200px; */
+}
+.domainTitle{
+  font-size: 34px;
+  color: #640f00;
+}
+
+.domainUrl {
+  color: #640f00;
+  /* width: 200px; */
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.domainUrl:hover{
+  color: #ffdeb6;
+}
+
+.cookieInform {
+  padding-left: 5%;
+}
+
+.cookieInform h3{
+  font-size: 28px;
+  color: #640f00;
+}
+
+.table{
+  text-align: center;
+  width: 95%;
+  font-size: 20px;
+  border: 1px solid #640f00;
+  border-collapse: collapse;
+}
+
+tr{
+  height: 35px;
+}
+
+.tr{
+  color:#fef4e8;
+  background-color:#a02e01;
+  /* font-size: 20px; */
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  font-size: 12px;
+  background-color: black;
+  opacity: 90%;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -50%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

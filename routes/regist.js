@@ -5,7 +5,7 @@ const router = express.Router();
 const options = {
     title: 'Regist',
     menus: [
-        { title: 'Cookie', link: '#'},
+        { title: 'Cookie', link: '/regist/cookie'},
         { title: 'URL', link: '#'},
         { title: 'JSON', link: '#'}
     ]

@@ -4,6 +4,7 @@ const path = require('path');
 const homeRouter = require('./routes/home');
 const searchRouter = require('./routes/search');
 const registRouter = require('./routes/regist');
+const cookieRouter = require('./routes/cookies')
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use('/', homeRouter);
 app.use('/search', searchRouter);
 app.use('/regist', registRouter);
+app.use('/cookies', cookieRouter)
 
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
