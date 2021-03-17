@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+    <%- include('link') %>
+    <link href="../public/css/cookiesCompare.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('topnav')%>
+  <input type="hidden" id="cookiesDataList" value="<%= JSON.stringify(data) %>">
+  <input type="hidden" id="previousCookieData">
+  <input type="hidden" id="nextCookieData">
+  <div class="datafield">
+    <div class="domainInform">
+      <h4 class="domainTitle"><%= JSON.stringify(data[0].domainTitle).replace(/\"/gi, "") %></h1>
+      <a href=<%= data.url %>>
+        <h4 class="domainUrl"><%= JSON.stringify(data[0].url).replace(/\"/gi, "") %></h4>
+      </a>
+    </div>
+    <div class="cookieDataField">
+      <div class="previousCookie">
+        <form action="post">
+          <select name="previousMonth" id="previousMonth" onchange="changePreviousMonth()">
+            <option selected>PreviousMonth</option>
+            <% for(let i=0; i < data.length; i++) { %>
+              <option value=<%= data[i].updatedDate %>>
+                <%= JSON.stringify(data[i].updatedAt).slice(0,8).replace(/\"/gi, "") %>
+              </option>
+            <% } %>
+          </select>
+        </form>
+        <div class="tableField" id="previousTableField">
+          <table id="previousTable">
+            <thead>
+              <tr class="tr">
+                <th>ID</th>
+                <th>name</th>
+                <th>connTLD</th>
+                <th>publisher</th>
+                <th>type</th>
+              </tr>
+            </thead>
+            <tbody id="previousTbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="nextCookie">
+        <form action="post">
+          <select name="nextMonth" id="nextMonth" onchange="changeNextMonth()">
+            <option selected>NextMonth</option>
+            <% for(let i=0; i < data.length; i++) { %>
+              <option value=<%= data[i].updatedDate %>>
+                <%= JSON.stringify(data[i].updatedAt).slice(0,8).replace(/\"/gi, "") %>
+              </option>
+            <% } %>
+          </select>
+        </form>
+        <div class="tableField" id="nextTableField">
+          <table id="nextTable">
+            <thead>
+              <tr class="tr">
+                <th>ID</th>
+                <th>name</th>
+                <th>connTLD</th>
+                <th>publisher</th>
+                <th>type</th>
+              </tr>
+            </thead>
+            <tbody id="nextTbody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../public/js/cookiesCompare.js"></script>
+</body>
+</html>

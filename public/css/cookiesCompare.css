@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+.domainInform {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+  /* align-content: stretch; */
+  flex-wrap: nowrap;
+  /* vertical-align: bottom; */
+  padding-top: 20px;
+  padding-left: 5%;
+  /* text-align: justify; */
+}
+.domainTitle {
+  /* display: inline; */
+  vertical-align: bottom;
+  text-align: justify;
+  font-weight: 700;
+  /* width: 200px; */
+}
+.domainTitle{
+  font-size: 34px;
+  color: #640f00;
+}
+
+.domainUrl {
+  color: #640f00;
+  /* width: 200px; */
+  font-size: 18px;
+  padding-left: 15px;
+}
+
+a{
+  text-decoration: none;
+}
+
+.domainUrl:hover{
+  color: #ffdeb6;
+}
+
+.cookieDataField{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 90%;
+  padding-left: 5%;
+  justify-content: flex-start;
+}
+.previousCookie{
+  z-index: 1;
+}
+
+select{
+  width: 150px;
+  font-size: 16px;
+  padding: .8em .5em;
+  border: 1px solid rgba(0, 0, 0, 0);
+  font-family: inherit;
+  background: url('./dropdownArrow.svg') no-repeat 90% 50%;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.tableField{
+  padding-top: 30px;
+  display: none;
+  width: 100%;
+}
+
+tr{
+  height: 35px;
+}
+
+.tr{
+  background-color: #193e63;
+  color: #ffffff;
+}
+
+.nextCookie{
+  position: absolute;     
+  padding-left: 50%;
+}
+
