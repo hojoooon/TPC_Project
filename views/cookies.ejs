@@ -9,6 +9,7 @@
 </head>
 <body>
   <%- include('topnav')%>
+  <input type="hidden" id="cookieData" value="<%= JSON.stringify(data.cookie) %>">
   <div class="datafield">
     <div class="domainInform">
       <h4 class="domainTitle"><%= JSON.stringify(data.domainTitle).replace(/\"/gi, "") %></h1>
@@ -18,11 +19,11 @@
     </div>
     <div class="cookieInform">
       <h3>Cookies</h3>
-      <div class="table-responsive">
-        <table class="table table-warning table-sm">
+      <div class="tableField">
+        <table class="table" id="table">
           <thead>
             <tr class="tr">
-              <th>No.</th>
+              <th>ID</th>
               <th>name</th>
               <th>conn</th>
               <th>connTLD</th>
@@ -30,10 +31,10 @@
               <th>type</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="table-body">
             <% for(let i=0; i < data.cookie.length; i++){ %>
               <% if(data.cookie[i].id % 2 === 0){ %>
-                <tr style="background-color: #cc7351; color:#ffefdb;">
+                <tr id="<%= data.cookie[i].id %>" style="background-color: #efe3db;">
                   <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
                   <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
                   <td class="tooltip">
@@ -45,7 +46,7 @@
                   <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
                 </tr>
               <% } else { %>
-                <tr style="background-color:#e08f62; color:#640f00; ;">
+                <tr id="<%= data.cookie[i].id %>" style="background-color:#f9f8f7;">
                   <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
                   <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
                   <td class="tooltip">
@@ -61,7 +62,17 @@
           </tbody>
         </table>
       </div>
+      <div id="paginationField" class="paginationField">
+        <button id="prev" type="button" onclick="prevBtn();buttonVisible()"><<</button>
+        <% for(let i=0; i < Math.round(data.cookie.length/15); i++){ %>
+          <button id="page<%= i+1 %>" type="button" value="<%= i+1 %>" onclick="pagination(this.value);buttonVisible()"><%= i+1 %></button>
+        <% } %>
+        <button id="next" type="button" onclick="nextBtn();buttonVisible()" >>></button>
+      </div>
     </div>
   </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="../public/js/cookiesPagenation.js"></script>
 </body>
 </html>
