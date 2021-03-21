@@ -63,11 +63,17 @@
         </table>
       </div>
       <div id="paginationField" class="paginationField">
-        <button id="prev" type="button" onclick="prevBtn();buttonVisible()"><<</button>
+        <button id="prev" type="button" onclick="prevBtn();buttonVisible()">
+          <p><<</p>
+        </button>
         <% for(let i=0; i < Math.round(data.cookie.length/15); i++){ %>
-          <button id="page<%= i+1 %>" type="button" value="<%= i+1 %>" onclick="pagination(this.value);buttonVisible()"><%= i+1 %></button>
+          <button id="page<%= i+1 %>" type="button" value="<%= i+1 %>" onclick="pagination(this.value);buttonVisible()">
+            <p><%= i+1 %></p>
+          </button>
         <% } %>
-        <button id="next" type="button" onclick="nextBtn();buttonVisible()" >>></button>
+        <button id="next" type="button" onclick="nextBtn();buttonVisible()" >
+          <p>>></p>
+        </button>
       </div>
     </div>
   </div>
