@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title %></title>
+    <%-include('link') %>
+</head>
+<body>
+    <%-include('topnav') %>
+    <input id="connCookies" type="hidden" value="<%=JSON.stringify(data)%>">
+    <div class="grid">
+        <h1><%=JSON.stringify(data[0].domainTitle).replace(/\"/gi,"")%></h1>
+        <h5><%=JSON.stringify(data[0].url).replace(/\"/gi,"")%></h5>
+    </div>
+    <div class="grid2">
+        <div>Conn</div>
+        <div>Cookies</div>
+    </div>
+    <div class="grid3">
+        <div class="item box1" id="connList">
+        </div>
+        <div>
+            <table id="connTable" class="table_style">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>conn</th>
+                    <th>conTLD</th>
+                    <th>publisher</th>
+                    <th>type</th>
+                </tr>
+                </thead>
+                <tbody id="connCookieList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../public/js/searchConn.js"></script>
+    <script>
+        // $(document).on("change","input[name='optionCheck']",function(){
+        //    // "change":function(){},
+        //    // "click":function(){},
+        // });
+    </script>
+</body>
+</html>
