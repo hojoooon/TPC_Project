@@ -14,5 +14,8 @@ const options = {
 router.get('/', (req, res) => {
     res.render('regist', options);
 });
+router.get('/Json',(req,res)=>{
+    res.render('registJson',options);
+});
 
 module.exports = router;

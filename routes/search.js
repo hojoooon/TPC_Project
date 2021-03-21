@@ -2,17 +2,18 @@ const express = require('express');
 
 const router = express.Router();
 
-const options = {
-    title: 'Search',
-    menus: ['Cookies', 'Publishers', 'Conn', 'Month']
-}
+const menus = [
+    {title: 'Cookies', link:'#'},
+    {title: 'Publishers', link:'#'},
+    {title: 'Conn', link:'#'},
+    {title: 'Month', link:'#'}
+]
 
 router.get('/', (req, res) => {
-    res.render('search', options);
+    res.render('search', {title: 'Search'});
 });
 
-// router.get('/search:id', (req, res) => {
-//     console.log(req.params, req.query);
-// })
-
+router.get('/conn',(req,res)=>{
+    res.render('searchConn', {title:'searchConn'});
+});
 module.exports = router;
