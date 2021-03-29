@@ -57,7 +57,7 @@ select{
   padding: .8em .5em;
   border: 1px solid rgba(0, 0, 0, 0);
   font-family: inherit;
-  background: url('./dropdownArrow.svg') no-repeat 90% 50%;
+  background: url('./dropdownArrow.svg') no-repeat 95% 700%;
   border-radius: 0px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -69,7 +69,7 @@ select::-ms-expand {
 }
 
 .tableField{
-  padding-top: 30px;
+  padding-top: 22px;
   display: none;
   width: 100%;
 }
@@ -84,7 +84,34 @@ tr{
 }
 
 .nextCookie{
-  position: absolute;     
+  position: absolute;
   padding-left: 50%;
 }
 
+.dropBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inform{
+  display: flex ;
+  flex-direction: row ;
+  align-content: center;
+  justify-content: space-between;
+  width: 762px;
+}
+
+.detail{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.detail h6{
+  font-size: 14.5px;
+}
+
+.count{
+  padding-right: 20px;
+}

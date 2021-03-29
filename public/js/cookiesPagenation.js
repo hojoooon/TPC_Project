@@ -21,6 +21,10 @@ function pageSetting(){
       buttonIdx.style.display = "none"
     }
   }
+  const firstPage = document.getElementById('page1');
+  firstPage.style.backgroundColor = "#ffecd3";
+  firstPage.style.border = "1px solid #ffecd3";
+  firstPage.style.color = "#a02e01";
 }
 
 function pagination(value) {
@@ -73,12 +77,21 @@ function prevBtn(){
 function buttonVisible(){
   for(let i=0; i < buttons; i++){
     const buttonIdx = document.getElementById(`page${i+1}`);
-    if(currentPage > 3 && currentPage < buttons - 1){
+    if(currentPage > 2 && currentPage < buttons - 1){
       if(currentPage-2 <= buttonIdx.value && currentPage+2 >= buttonIdx.value){
         buttonIdx.style.display = "block"
       }else{
         buttonIdx.style.display = "none"
       }
+    }
+    if(i+1 === currentPage){
+      buttonIdx.style.backgroundColor = "#ffecd3";
+      buttonIdx.style.border = "1px solid #ffecd3";
+      buttonIdx.style.color = "#a02e01";
+    }else{
+      buttonIdx.style.backgroundColor = "#fea71a";
+      buttonIdx.style.border = "1px solid #fea71a";
+      buttonIdx.style.color = "#fff";
     }
   }
 }

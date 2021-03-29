@@ -19,9 +19,17 @@ let nextCookie
 let ptbody
 let ntbody
 
-function changePreviousMonth() {
+
+
+function changePreviousMonth(id) {
   const previousTbody = document.getElementById('previousTbody');
-  const nextTbody = document.getElementById('nextTbody')
+  const nextTbody = document.getElementById('nextTbody');
+  const prevCookieCount = document.getElementById('prevCookieCount');
+  const disappeared = document.getElementById('disappeared');
+  const appeared = document.getElementById('appeared');
+
+  let disappearedCount = 0
+  let appearedCount = 0
 
   previousTableField.style.display = "block"
   previousTable.style.textAlign = "center"
@@ -36,24 +44,37 @@ function changePreviousMonth() {
   let previousIdx = data.findIndex((item) => {
     return item.updatedDate === previousTarget
   })
-  
+
   previousCookieData.setAttribute('value', JSON.stringify(data[previousIdx].cookie))
   
+  previousCookie = data[previousIdx].cookie
+  prevCookieCount.innerText = `Cookie: ${previousCookie.length}`
+
+  if(id !== undefined){
+    previousCookie.sort((a,b) => {
+      return a[id] > b[id] ? 1 : -1;
+    })
+  }else{
+    previousCookie.sort((a,b) => {
+      return a.connTLD > b.connTLD ? 1 : -1;
+    })
+  }
+
   ptbody = document.createElement('tbody');
   if(previousCookieData.value !== ""){
     ptbody.setAttribute('id', 'previousTbody');
-    for(let i=0; i < data[previousIdx].cookie.length; i++){
+    for(let i=0; i < previousCookie.length; i++){
       const tr = document.createElement('tr');
       const td1 = document.createElement('td');
-      td1.innerText = data[previousIdx].cookie[i].id;
+      td1.innerText = i+1;
       const td2 = document.createElement('td');
-      td2.innerText = data[previousIdx].cookie[i].name.slice(0,10);
+      td2.innerText = previousCookie[i].name.slice(0,10);
       const td3 = document.createElement('td');
-      td3.innerText = data[previousIdx].cookie[i].connTLD;
+      td3.innerText = previousCookie[i].connTLD;
       const td4 = document.createElement('td');
-      td4.innerText = data[previousIdx].cookie[i].publisher;
+      td4.innerText = previousCookie[i].publisher;
       const td5 = document.createElement('td')
-      td5.innerText = data[previousIdx].cookie[i].type;
+      td5.innerText = previousCookie[i].type;
       tr.appendChild(td1)
       tr.appendChild(td2)
       tr.appendChild(td3)
@@ -68,8 +89,6 @@ function changePreviousMonth() {
       td5.style.width = "80px"
     }
   }
-  
-  previousCookie = data[previousIdx].cookie
 
   if(previousCookie !== undefined && nextCookie !== undefined){
     for(let i=0; i < previousCookie.length; i++){
@@ -79,6 +98,7 @@ function changePreviousMonth() {
         ptbody.children[i].style.color = "#ff0000"
         ptbody.children[i].style.borderTop = "0.2px solid #ff4d4d"
         ptbody.children[i].style.borderBottom = "0.2px solid #ff4d4d"
+        disappearedCount += 1
       }else{
         ptbody.children[i].style.backgroundColor = "#fff"
         ptbody.children[i].style.color = "#000"
@@ -91,18 +111,31 @@ function changePreviousMonth() {
         nextTbody.children[j].style.color = "#048000"
         nextTbody.children[j].style.borderTop = "0.2px solid #00e600"
         nextTbody.children[j].style.borderBottom = "0.2px solid #00e600"
+        appearedCount += 1
       }else{
         nextTbody.children[j].style.backgroundColor = "#fff"
         nextTbody.children[j].style.color = "#000"
       }
     }
   }
+
+  if(disappearedCount !== 0 && appearedCount !==0){
+    disappeared.innerText = `Disappeared: ${disappearedCount}`
+    appeared.innerText = `Appeared: ${appearedCount}`
+  }
+
   previousTable.replaceChild(ptbody, previousTbody)
 }
 
-function changeNextMonth() {
+function changeNextMonth(id) {
   const previousTbody = document.getElementById('previousTbody');
   const nextTbody = document.getElementById('nextTbody');
+  const nextCookieCount = document.getElementById('nextCookieCount');
+  const disappeared = document.getElementById('disappeared');
+  const appeared = document.getElementById('appeared');
+
+  let disappearedCount = 0
+  let appearedCount = 0
 
   nextTableField.style.display = "block";
   nextTable.style.textAlign = "center";
@@ -122,20 +155,33 @@ function changeNextMonth() {
 
   ntbody = document.createElement('tbody');
 
+  nextCookie = data[nextIdx].cookie
+  nextCookieCount.innerText = `Cookie: ${nextCookie.length}`
+
+  if(id !== undefined){
+    nextCookie.sort((a,b) => {
+      return a[id] > b[id] ? 1 : -1;
+    })
+  }else{
+    nextCookie.sort((a,b) => {
+      return a.connTLD > b.connTLD ? 1 : -1;
+    })
+  }
+
   if(nextCookieData.value !== ""){
     ntbody.setAttribute('id', 'nextTbody');
-    for(let i=0; i < data[nextIdx].cookie.length; i++){
+    for(let i=0; i < nextCookie.length; i++){
       const tr = document.createElement('tr');
       const td1 = document.createElement('td');
-      td1.innerText = data[nextIdx].cookie[i].id;
+      td1.innerText = i+1;
       const td2 = document.createElement('td');
-      td2.innerText = data[nextIdx].cookie[i].name.slice(0,10);
+      td2.innerText = nextCookie[i].name.slice(0,10);
       const td3 = document.createElement('td');
-      td3.innerText = data[nextIdx].cookie[i].connTLD;
+      td3.innerText = nextCookie[i].connTLD;
       const td4 = document.createElement('td');
-      td4.innerText = data[nextIdx].cookie[i].publisher;
+      td4.innerText = nextCookie[i].publisher;
       const td5 = document.createElement('td')
-      td5.innerText = data[nextIdx].cookie[i].type;
+      td5.innerText = nextCookie[i].type;
       tr.appendChild(td1)
       tr.appendChild(td2)
       tr.appendChild(td3)
@@ -151,7 +197,7 @@ function changeNextMonth() {
     }
   }
 
-  nextCookie = data[nextIdx].cookie
+  
 
   if(previousCookie !== undefined && nextCookie !== undefined){
     for(let i=0; i < previousCookie.length; i++){
@@ -161,6 +207,7 @@ function changeNextMonth() {
         previousTbody.children[i].style.color = "#ff0000"
         previousTbody.children[i].style.borderTop = "0.2px solid #ff4d4d"
         previousTbody.children[i].style.borderBottom = "0.2px solid #ff4d4d"
+        disappearedCount += 1
       }else{
         previousTbody.children[i].style.backgroundColor = "#fff"
         previousTbody.children[i].style.color = "#000"
@@ -173,11 +220,44 @@ function changeNextMonth() {
         ntbody.children[j].style.color = "#048000"
         ntbody.children[j].style.borderTop = "0.2px solid #00e600"
         ntbody.children[j].style.borderBottom = "0.2px solid #00e600"
+        appearedCount += 1
       }else{
         ntbody.children[j].style.backgroundColor = "#fff"
         ntbody.children[j].style.color = "#000"
       }
     }
   }
+
+  if(disappearedCount !== 0 && appearedCount !==0){
+    disappeared.innerText = `Disappeared: ${disappearedCount}`
+    appeared.innerText = `Appeared: ${appearedCount}`
+  }
+
   nextTable.replaceChild(ntbody, nextTbody)
+}
+
+function sortPrevBy(id){
+  changePreviousMonth(id)
+  const prevTr = document.getElementById('prevTr');
+  const thead = prevTr.children
+  for(let i=1; i < thead.length; i++){
+    if(thead[i].id === id){
+      thead[i].innerHTML = `${id}<i class="fas fa-caret-down" style="padding-left: 4px;"></i>`
+    }else{
+      thead[i].innerHTML = `${thead[i].id}`
+    }
+  }
+}
+
+function sortNextBy(id){
+  changeNextMonth(id)
+  const nextTr = document.getElementById('nextTr');
+  const thead = nextTr.children
+  for(let i=1; i < thead.length; i++){
+    if(thead[i].id === id){
+      thead[i].innerHTML = `${id}<i class="fas fa-caret-down" style="padding-left: 4px;"></i>`
+    }else{
+      thead[i].innerHTML = `${thead[i].id}`
+    }
+  }
 }

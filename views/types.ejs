@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <%- include('link') %>
+    <link href="/public/css/chart.css" type="text/css" rel="stylesheet">
+    <link href="/public/css/cookies.css" rel="stylesheet">
+</head>
+<body>
+    <%- include('topnav') %>
+    <%- include('subnav') %>
+    <div class="datafield">
+        <div class="domainInform">
+            <h4 class="domainTitle"><%= JSON.stringify(data.domainTitle).replace(/\"/gi, "") %></h4>
+            <a href=<%= data.url %>>
+                <h4 class="domainUrl"><%= JSON.stringify(data.url).replace(/\"/gi, "") %></h4>
+            </a>
+        </div>
+    </div>
+    <div class="piechart">
+        <svg id="pieChart" width="820" height="500"></svg>
+        <svg id="legends" width="100" height="800"></svg>
+        <svg id="publishers" width="300" height="800"></svg>
+            <script>
+                let data = '<%= JSON.stringify(data) %>';
+                data = data.replaceAll('&#34;', '\"');
+                data = JSON.parse(data);
+
+                console.log(data);
+
+                let counts = '<%= JSON.stringify(counts) %>';
+                counts = counts.replaceAll('&#34;', '\"');
+                counts = JSON.parse(counts);
+
+                const colors = [];
+                for (let i = 0; i < counts.length; i++) {
+                    let color = `color-${i + 1}`;
+                    colors.push(color);
+                }
+
+                const pie = d3.pie()
+                    .sort(null)
+                    .value(d => d.count)(counts);
+                console.log(pie);
+
+                const arc = d3.arc()
+                    .innerRadius(0)
+                    .outerRadius(230)
+                    // .padAngle(0.03)
+                    // .cornerRadius(3);
+
+                const svg = d3.select('#pieChart')
+
+                svg.selectAll('path').data(pie)
+                    .enter().append('path')
+                    .attr('d', arc)
+                    .attr('transform', 'translate(230, 230)')
+                    .attr('class', (d, i) => colors[i])
+            </script>
+            <script>
+                const size = 15;
+                const space = 15;
+                const x = 20;
+                let y = 85;
+
+                const legend = d3.select('#legends')
+                    .append('svg')
+                    .selectAll('.legendItem')
+                    .data(counts);
+                legend.enter()
+                    .append('rect').attr('rx', 3)
+                    .attr('class', 'legendItem')
+                    .attr('width', size).attr('height', size)
+                    .attr('class', (d, i) => colors[i])
+                    .attr('transform', (d, i) => `translate(${x}, ${y + (size + space) * i})`);
+                legend.enter()
+                    .append('text')
+                    .attr('x', x + size + 10)
+                    .attr('y', (d, i) => y + (size + space) * i + 13)
+                    .text(d => `${d.type} (${d.count})`);
+                    // .text(d => `${d.type}: ${d.count}`);
+
+                const tooltip = d3.select('body')
+                    .append('div')
+                    .attr('class', 'toolTip');
+            </script>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js" integrity="sha512-0XfwGD1nxplHpehcSVI7lY+m/5L37PNHDt+DOc7aLFckwPXjnjeA1oeNbru7YeI4VLs9i+ADnnHEhP69C9CqTA==" crossorigin="anonymous"></script>
+<!--    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
+</body>
+</html>

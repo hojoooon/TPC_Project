@@ -1,78 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title><%= title %></title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
-    <%- include('link') %>
-    <link href="../public/css/cookies.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <%- include('link') %>
+  <link href="/public/css/cookies.css" rel="stylesheet">
 </head>
 <body>
-  <%- include('topnav')%>
-  <input type="hidden" id="cookieData" value="<%= JSON.stringify(data.cookie) %>">
-  <div class="datafield">
-    <div class="domainInform">
-      <h4 class="domainTitle"><%= JSON.stringify(data.domainTitle).replace(/\"/gi, "") %></h1>
+<%- include('topnav')%>
+<%- include('subnav')%>
+<input type="hidden" id="cookieData" value="<%= JSON.stringify(data.cookie) %>">
+<div class="datafield">
+  <div class="domainInform">
+    <h4 class="domainTitle"><%= JSON.stringify(data.domainTitle).replace(/\"/gi, "") %></h4>
       <a href=<%= data.url %>>
-        <h4 class="domainUrl"><%= JSON.stringify(data.url).replace(/\"/gi, "") %></h4>
+        <h4 class="domainUrl"><%= JSON.stringify(data.url).replace(/\"/gi, "").slice(0, -1) %></h4>
       </a>
-    </div>
-    <div class="cookieInform">
-      <h3>Cookies</h3>
-      <div class="tableField">
-        <table class="table" id="table">
-          <thead>
-            <tr class="tr">
-              <th>ID</th>
-              <th>name</th>
-              <th>conn</th>
-              <th>connTLD</th>
-              <th>publisher</th>
-              <th>type</th>
+  </div>
+  <div class="cookieInform">
+    <h3>Cookies</h3>
+    <div class="tableField">
+      <table class="table" id="table">
+        <thead>
+        <tr class="tr">
+          <th>ID</th>
+          <th>name</th>
+          <th>conn</th>
+          <th>connTLD</th>
+          <th>publisher</th>
+          <th>type</th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+        <% for(let i=0; i < data.cookie.length; i++){ %>
+          <% if(data.cookie[i].id % 2 === 0){ %>
+            <tr id="<%= data.cookie[i].id %>" style="background-color: #efe3db;">
+              <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "").slice(0,15) %></td>
+              <td class="tooltip">
+                <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
+                <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
+              </td>
+              <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
             </tr>
-          </thead>
-          <tbody id="table-body">
-            <% for(let i=0; i < data.cookie.length; i++){ %>
-              <% if(data.cookie[i].id % 2 === 0){ %>
-                <tr id="<%= data.cookie[i].id %>" style="background-color: #efe3db;">
-                  <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
-                  <td class="tooltip">
-                    <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
-                    <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
-                  </td>
-                  <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
-                </tr>
-              <% } else { %>
-                <tr id="<%= data.cookie[i].id %>" style="background-color:#f9f8f7;">
-                  <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "") %></td>
-                  <td class="tooltip">
-                    <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
-                    <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
-                  </td>
-                  <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
-                  <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
-                </tr>
-              <% } %>
-            <% } %>
-          </tbody>
-        </table>
-      </div>
-      <div id="paginationField" class="paginationField">
-        <button id="prev" type="button" onclick="prevBtn();buttonVisible()"><<</button>
-        <% for(let i=0; i < Math.round(data.cookie.length/15); i++){ %>
-          <button id="page<%= i+1 %>" type="button" value="<%= i+1 %>" onclick="pagination(this.value);buttonVisible()"><%= i+1 %></button>
+          <% } else { %>
+            <tr id="<%= data.cookie[i].id %>" style="background-color:#f9f8f7;">
+              <td><%= JSON.stringify(data.cookie[i].id).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].name).replace(/\"/gi, "").slice(0,15) %></td>
+              <td class="tooltip">
+                <%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,35) %>
+                <span class="tooltiptext"><%= JSON.stringify(data.cookie[i].conn).replace(/\"/gi, "").slice(0,50) %></span>
+              </td>
+              <td><%= JSON.stringify(data.cookie[i].connTLD).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].publisher).replace(/\"/gi, "") %></td>
+              <td><%= JSON.stringify(data.cookie[i].type).replace(/\"/gi, "") %></td>
+            </tr>
+          <% } %>
         <% } %>
-        <button id="next" type="button" onclick="nextBtn();buttonVisible()" >>></button>
-      </div>
+        </tbody>
+      </table>
+    </div>
+    <div id="paginationField" class="paginationField">
+      <button id="prev" type="button" onclick="prevBtn();buttonVisible()">
+        <p><<</p>
+      </button>
+      <% for(let i=0; i < Math.round(data.cookie.length/15); i++){ %>
+        <button id="page<%= i+1 %>" type="button" value="<%= i+1 %>" onclick="pagination(this.value);buttonVisible()">
+          <p><%= i+1 %></p>
+        </button>
+      <% } %>
+      <button id="next" type="button" onclick="nextBtn();buttonVisible()" >
+        <p>>></p>
+      </button>
     </div>
   </div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-  <script src="../public/js/cookiesPagenation.js"></script>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="../public/js/cookiesPagenation.js"></script>
 </body>
 </html>

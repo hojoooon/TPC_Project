@@ -811,7 +811,6 @@ legend {
 /*}*/
 
 .s003 {
-  min-height: 100vh;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -822,6 +821,7 @@ legend {
   background-color: #fef5e8;
   background-size: cover;
   background-position: center center;
+  margin-top: 10%;
   padding: 15px;
 }
 
@@ -882,7 +882,6 @@ legend {
 
 .s003 form .inner-form .input-field.first-wrap {
   width: 200px;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .s003 form .inner-form .input-field.first-wrap .choices__inner {

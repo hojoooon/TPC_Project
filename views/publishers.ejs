@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <%- include('link') %>
+    <link href="/public/css/cookies.css" rel="stylesheet">
+    <link href="/public/css/chart.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<%- include('topnav') %>
+<div class="datafield">
+    <div class="domainInform">
+        <h4 class="domainTitle"><%= JSON.stringify(data.publisher).replace(/\"/gi, "") %></h4>
+    </div>
+</div>
+<div class="barchart">
+    <svg id="barchart" width="1660" height="650"></svg>
+    <script>
+        let detail = '<%= JSON.stringify(data.detail) %>'
+        detail = detail.replaceAll('&#34;', '\"');
+        detail = JSON.parse(detail);
+        console.log(detail);
+
+        const colors = [];
+        for (let i = 0; i < detail.length; i++) {
+            colors.push('color-13');
+        }
+
+        const domains = [];
+        for (let i = 0; i < detail.length; i++) {
+            domains.push(detail[i].domain);
+        }
+        console.log(domains);
+    </script>
+    <script>
+        const barchart = d3.select('#barchart');
+
+        const padding = {
+            top: 10,
+            bottom: 30,
+            right: 30,
+            left: 20
+        };
+
+        const area = {
+            width: 1500,
+            height: 560
+        }
+
+        const yScale = d3.scaleLinear()
+            .domain([0, d3.max(detail, d => d.count)])
+            .range([area.height, 0]).nice();
+
+        const xScale = d3.scaleBand()
+            .domain(detail.map(d => d.domain))
+            .range([0, area.width])
+            .padding(.2);
+
+        const yAxisFn = d3.axisLeft(yScale);
+        const yAxis = barchart.append('g')
+            .classed('yAxis', true)
+            .attr('transform', `translate(${padding.left}, ${padding.top})`);
+        yAxisFn(yAxis);
+
+        const xAxis = barchart.append('g')
+            .classed('xAxis', true)
+            .attr('transform', `translate(${padding.left}, ${area.height + padding.top})`)
+            .call(d3.axisBottom(xScale))
+            .selectAll('text')
+            .attr('dx', '-20')
+            .attr('dy', '15')
+            .attr('transform', 'rotate(-45)');
+
+        // const tip = d3.tip()
+        //     .attr('class', 'd3-tip')
+        //     .html(d => d.count)
+
+        const bars = barchart.append('g')
+            .attr('transform', `translate(${padding.left}, ${padding.top})`)
+            // .call(tip);
+
+
+        bars.selectAll('rect')
+            .data(detail).enter()
+            .append('rect')
+            .attr('width', xScale.bandwidth()).attr('rx', 3)
+            .attr('height', d => area.height - yScale(d.count))
+            .attr('x', d => xScale(d.domain))
+            .attr('y', d => yScale(d.count))
+            .attr('class', (d, i) => colors[i])
+            // .on('mouseover', tip.show)
+            // .on('mouseout', tip.hide)
+    </script>
+</div>
+</body>
+</html>

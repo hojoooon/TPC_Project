@@ -3,41 +3,50 @@
 <head>
     <title><%= title %></title>
     <%- include('link') %>
-    <link href="/public/css/searchBar.css" type="text/css" rel="stylesheet">
+    <link href="../public/css/search.css" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/72c2a49ef4.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <%- include('topnav')%>
-<div class="s003">
-    <form action="cookies.ejs">
-        <div class="inner-form">
-            <div class="input-field third-wrap">
-                <button class="btn-search" type="submit">
-                    <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                    </svg>
-                </button>
+<input type="hidden" id="dataList" value="<%= JSON.stringify(data) %>">
+<div>
+    <div class="s003">
+        <form id="search" name="search" method="get" action="/search/result">
+            <div class="inner-form">
+                <form>
+                    <form>
+                        <div class="input-field first-wrap">
+                            <div class="input-select" >
+                                <select data-trigger="" id="searchOption" name="option" onchange="setPlaceHolder();">
+                                    <option value="domains" selected>Domains</option>
+                                    <option value="publishers">Publishers</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="input-field second-wrap">
+                        <input class="search" id="searchBar" name="keyword" type="text" autocomplete="off" placeholder="ex) 11st, ppomppu, naver" required/>
+                        <ul class="suggestions">
+                        </ul>
+                    </div>
+                    <div class="input-field third-wrap">
+                        <button id="btn-search" class="btn-search" type="submit">
+                            <i class="fas fa-search fa-lg"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="input-field second-wrap">
-                <input id="search" type="text" placeholder="search url"  />
-            </div>
-            <div class="input-field first-wrap">
-                <div class="input-select">
-                    <select data-trigger="" name="choices-single-defaul" id="search_opt">
-                        <option value="domain" selected>Domains</option>
-                        <option value="publisher">Publishers</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 <script src="public/js/extention/choices.js"></script>
 <script>
     const choices = new Choices('[data-trigger]',
         {
-            searchEnabled: false,
+            searchEnabled: true,
             itemSelectText: '',
         });
 </script>
+<script src="../public/js/searchBar.js"></script>
 </body>
 </html>

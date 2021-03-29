@@ -1,18 +1,20 @@
-const express = require('express');
+import express from 'express';
+// import { spawn } from 'child_process';
 
 const router = express.Router();
 
-const options = {
-    title: 'Regist',
-    menus: [
-        { title: 'Cookie', link: '/regist/cookie'},
-        { title: 'URL', link: '#'},
-        { title: 'JSON', link: '#'}
-    ]
-}
+const menus = [
+    { title: 'Cookie', link: '#'},
+    { title: 'URL', link: '/regist/url'},
+    { title: 'JSON', link: '#'}
+]
 
 router.get('/', (req, res) => {
-    res.render('regist', options);
+    res.render('regist', { title: 'Regist', menus });
 });
 
-module.exports = router;
+router.get('/url', (req, res) => {
+    res.render('url', { title: 'Regist by URL', menus })
+});
+
+export default router;

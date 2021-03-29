@@ -72,8 +72,7 @@ body {
 
 .subnav {
     display: flex;
-    position: fixed;
-    margin-top: 56px;
+    position: relative;
     left: 0;
     right: 0;
     width: auto;

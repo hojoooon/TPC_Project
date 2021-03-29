@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <%-include('link') %>
+    <link rel="stylesheet" href="/public/css/cookies.css" type="text/css">
+    <link rel="stylesheet" href="/public/css/searchConn.css" type="text/css">
+</head>
+<body>
+    <%-include('topnav') %>
+    <%-include('subnav') %>
+    <input id="connCookies" type="hidden" value="<%=JSON.stringify(data)%>">
+    <div class="domainInform">
+        <h4 class="domainTitle"><%= JSON.stringify(data[0].domainTitle).replace(/\"/gi, "") %></h4>
+        <a href=<%= data.url %>>
+            <h4 class="domainUrl"><%= JSON.stringify(data[0].url).replace(/\"/gi, "") %></h4>
+        </a>
+    </div>
+    <div class="grid2">
+        <div>Conn</div>
+        <div>Cookies</div>
+    </div>
+    <div class="grid3">
+        <div class="item box1" id="connList">
+        </div>
+        <div>
+            <table id="connTable" class="table_style">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>conn</th>
+                    <th>conTLD</th>
+                    <th>publisher</th>
+                    <th>type</th>
+                </tr>
+                </thead>
+                <tbody id="connCookieList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/public/js/searchConn.js"></script>
+    <script>
+        // $(document).on("change","input[name='optionCheck']",function(){
+        //    // "change":function(){},
+        //    // "click":function(){},
+        // });
+    </script>
+</body>
+</html>

@@ -1,14 +1,15 @@
-const express = require('express');
-const fetch = require('isomorphic-fetch');
+import express from "express";
+import fetch from 'node-fetch';
 
 const router = express.Router();
+
+let dataArr = [];
 
 router.get('/', (req, res) => {
     fetch('http://localhost:4000', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify({
             query: `
@@ -34,17 +35,16 @@ router.get('/', (req, res) => {
             return result.json();
         })
         .then(data => {
-            // return data;
-            // res.send(data);
-            const d = []
-            d.push(data)
-            res.render('home', { title: 'Home', data: d[0].data.getCookieData[0] });
-            // console.log(d[0].data.getCookieData[0]);
+            dataArr.push(data);
+            res.render('home', { title: 'Home', data: JSON.stringify(data) });
+            console.log(dataArr[0].data.getCookieData[0].cookie);
         })
         .catch(err => {
             console.error(err);
         })
 });
 
-module.exports = router;
+export default router;
+
+// module.exports = router;
 
