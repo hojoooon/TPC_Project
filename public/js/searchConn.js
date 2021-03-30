@@ -10,7 +10,7 @@ const arr = data[0].cookie;
 
 const removeConnDuplicate = (arr,prop_1) =>
     arr.reduce((acc,cur)=>{
-        if(!acc.find(obj=>obj[prop_1] === cur[prop_1])){
+        if(!acc.find(obj=>obj[prop_1] === cur[prop_1]) && cur[prop_1] !== null){
             acc.push(cur);
         }
         return acc;
@@ -21,7 +21,6 @@ const removeConnDuplicate = (arr,prop_1) =>
 console.log(removeConnDuplicate(arr, "conn"));
 const connCookie = removeConnDuplicate(arr,"conn"); //중복제거한 connCookie
 let cnDiv
-
 
 function connCookieData(){
     for (let i=0; i<connCookie.length; i++){
