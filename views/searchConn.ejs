@@ -14,15 +14,16 @@
     <div class="domainInform">
         <h4 class="domainTitle"><%= JSON.stringify(data[0].domainTitle).replace(/\"/gi, "") %></h4>
         <a href=<%= data.url %>>
-            <h4 class="domainUrl"><%= JSON.stringify(data[0].url).replace(/\"/gi, "") %></h4>
+            <h4 class="domainUrl"><%= JSON.stringify(data[0].url).replace(/\"/gi, "").slice(0, -1) %></h4>
         </a>
     </div>
     <div class="grid2">
-        <div>Conn</div>
-        <div>Cookies</div>
+        <div id="connInform">Conn</div>
+        <div id="cookieInform">Cookies</div>
     </div>
     <div class="grid3">
-        <div class="item box1" id="connList">
+        <div class="item" id="connList">
+            <h3 id="checkedInform">0 conn selected</h3>
         </div>
         <div>
             <table id="connTable" class="table_style">

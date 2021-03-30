@@ -18,7 +18,9 @@
       </a>
   </div>
   <div class="cookieInform">
-    <h3>Cookies</h3>
+    <div>
+      <h3>Cookies (Total: <%= data.cookie.length %>, UpdatedDate: <%= JSON.stringify(data.updatedDate).replace(/\"/gi, "") %>)</h3>
+    </div>
     <div class="tableField">
       <table class="table" id="table">
         <thead>
